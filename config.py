@@ -1,0 +1,2 @@
+APP_ID = '1248ade5fbd84909'
+APP_KEY = 'rDhsEmVgluba2V4TVKu55uHsj7Uiw5YT'
