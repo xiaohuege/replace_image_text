@@ -28,8 +28,9 @@ def split_bounding(str):
   return { 'left_top': arr[0:2], 'right_top': arr[2:4], 'right_bottom': arr[4:6], 'left_bottom': arr[6:8]}
 
 def bootatrap(imgPath):
-  # res = translate(imgPath)
-  res = get_json()
+  res = translate(imgPath)
+  # res = get_json()
+  save_json(res)
   if res is None or res.get('errorCode') != '0':
     print('接口请求失败')
     return
@@ -57,5 +58,5 @@ def bootatrap(imgPath):
   image.save(imgPath.replace('/data/', '/output/'))
 
 if __name__ == '__main__':
-  imgPath = path.realpath('./data/1.jpeg')
+  imgPath = path.realpath('./data/6.jpeg')
   bootatrap(imgPath)
