@@ -1,0 +1,17 @@
+SPECIAL_WORDS = {
+  '肾藏': '肾脏',
+  '瞻固醇': '胆固醇'
+}
+
+# 繁体组词替换
+def replace_special_words(words):
+  res = words
+  for (k,v) in SPECIAL_WORDS.items():
+    res = res.replace(k, v)
+  return res
+
+# 是否中文
+def is_chn(text):
+  if text is None:
+    return False
+  return '\u4e00' <= text <= '\u9fa5'

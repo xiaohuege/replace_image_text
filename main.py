@@ -2,16 +2,22 @@ import json
 from youdao import translate
 from os import path
 from font import to_simplified
+from image import rebuild_image
+from PIL import Image
 
+# 缓存文件路径
+cachePath = path.realpath('./data/bak.json')
+
+# 将有道文字识别结果缓存到json，减少接口调用次数
 def save_json(res):
-  jsonPath = path.realpath('./data/1.json')
-  file = open(jsonPath, 'w+')
+  global cachePath
+  file = open(cachePath, 'w+')
   file.write(json.dumps(res))
   file.close()
 
 def get_json():
-  jsonPath = path.realpath('./data/1.json')
-  file = open(jsonPath, 'r')
+  global cachePath
+  file = open(cachePath, 'r')
   res = json.loads(file.read())
   file.close()
   return res
@@ -31,25 +37,24 @@ def bootatrap(imgPath):
   # 文字区块方向
   # orientation = result.get('orientation')
   regions = result.get('regions')
-  # 去除所有文字
+  # 取出所有文字--按行
   words = []
   for reg in regions:
     lines = reg.get('lines')
-    for line in lines:
-      words = words + line.get('words')
+    words = words + lines
   # 保存所有繁体字
   tradit_words = []
   for w in words:
-    word = w.get('word')
+    word = w.get('text')
     boundingBox = w.get('boundingBox')
     # 转换成简体字
     new_word = to_simplified(word)
     # 如果转换之后和原始值不同，则认为是繁体字
-    if word != new_word:
-      tradit_words.append({ 'word': word, 'to': new_word, 'boundingBox': split_bounding(boundingBox) })
+    tradit_words.append({ 'word': word, 'to': new_word, 'boundingBox': split_bounding(boundingBox) })
 
-  # 识别文字颜色以及所在区域的背景色
-  print(tradit_words)
+  image = Image.open(imgPath)
+  rebuild_image(image, tradit_words)
+  image.save(imgPath.replace('/data/', '/output/'))
 
 if __name__ == '__main__':
   imgPath = path.realpath('./data/1.jpeg')
