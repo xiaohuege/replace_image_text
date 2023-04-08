@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 import json
 from youdao import translate
 from os import path
@@ -58,5 +59,5 @@ def bootatrap(imgPath):
   image.save(imgPath.replace('/data/', '/output/'))
 
 if __name__ == '__main__':
-  imgPath = path.realpath('./data/6.jpeg')
+  imgPath = path.realpath('./data/11.jpeg')
   bootatrap(imgPath)

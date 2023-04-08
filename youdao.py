@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 from config import APP_KEY, APP_SECRET, YOUDAO_URL
 from common import post
 import base64

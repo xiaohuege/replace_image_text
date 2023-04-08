@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 # 16进制转RGB
 def hex_to_rgb(color):
   r = int(color[0:2], 16)

@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 import zhconv
 from text import replace_special_words
 

@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*-
 from PIL import ImageDraw,ImageFont
 from color import hex_to_rgb,rgb_to_hex,is_color_alike
 from text import is_chn
@@ -42,6 +43,7 @@ def draw_text(draw, start_x, start_y, font_size, text, color, font):
       w += WORD_SPACE
     else:
       w += int(font_size * 0.6)
+    print('xxxxxx', prev_x, start_y, text[i])
     draw.text((prev_x, start_y), text[i], fill=color, font=font)
     prev_x += w
 
