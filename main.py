@@ -59,5 +59,5 @@ def bootatrap(imgPath):
   image.save(imgPath.replace('/data/', '/output/'))
 
 if __name__ == '__main__':
-  imgPath = path.realpath('./data/7.jpeg')
+  imgPath = path.realpath('./data/16.jpeg')
   bootatrap(imgPath)
